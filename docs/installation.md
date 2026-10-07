@@ -16,6 +16,9 @@ cd aero-api
 # Tell Composer where the package lives (adds a "repositories" entry to composer.json)
 composer config repositories.worldpay-moto vcs git@github.com:ghufranulhaq/worldpay-php.git
 
+# Private repo + SSH only: install by git clone instead of downloading a zip (see the note below)
+composer config preferred-install.aerotickets/worldpay-moto source
+
 # Install the latest 0.x release
 composer require aerotickets/worldpay-moto:^0.1
 ```
@@ -28,8 +31,17 @@ This adds the following to `composer.json`:
 },
 "require": {
     "aerotickets/worldpay-moto": "^0.1"
+},
+"config": {
+    "preferred-install": { "aerotickets/worldpay-moto": "source" }
 }
 ```
+
+> **Why `preferred-install: source`?** By default Composer downloads a zip from GitHub's API. For a **private**
+> repository that needs a GitHub token, and without one it fails with
+> `zipball/… could not be downloaded (HTTP/2 404)`. Installing from source clones the tag over SSH instead, so an
+> SSH key is enough (verified with v0.1.0). If you configure a GitHub token instead (see below), you can drop the
+> setting.
 
 Laravel discovers the service provider and the `Worldpay` facade automatically. Next:
 
