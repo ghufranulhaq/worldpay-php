@@ -1,0 +1,56 @@
+{
+    "name": "aerotickets/worldpay-moto",
+    "description": "Aero Tickets SDK for Worldpay Access MOTO (mail order / telephone order) card payments.",
+    "type": "library",
+    "license": "proprietary",
+    "keywords": ["worldpay", "access", "moto", "payments", "aerotickets"],
+    "require": {
+        "php": "^8.2",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.8",
+        "psr/log": "^2.0 || ^3.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^9.0 || ^10.0",
+        "pestphp/pest": "^3.0",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "suggest": {
+        "illuminate/support": "Enables the Laravel service provider, config file and Worldpay facade (^11 or ^12)."
+    },
+    "autoload": {
+        "psr-4": {
+            "AeroTickets\\Worldpay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AeroTickets\\Worldpay\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AeroTickets\\Worldpay\\Laravel\\WorldpayServiceProvider"
+            ],
+            "aliases": {
+                "Worldpay": "AeroTickets\\Worldpay\\Laravel\\Facades\\Worldpay"
+            }
+        }
+    },
+    "scripts": {
+        "test": "pest --testsuite=Unit,Laravel",
+        "test:integration": "pest --testsuite=Integration",
+        "lint": "pint --test",
+        "format": "pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
